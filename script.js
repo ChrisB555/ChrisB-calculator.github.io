@@ -9,10 +9,10 @@ let num2 = "";
 let result = null;
 let lastOperation = "";
 let decimal = false;
-let tempResult = "";
+let tempResult =  "";
 
 numbers.forEach((number) => {
-  number.addEventListener("click", (event) => {
+  number.addEventListener("click", (event) =>{
     if (event.target.innerText === "." ) {
       decimal = true;
     } 
@@ -25,20 +25,22 @@ operation.forEach((op) => {
   op.addEventListener("click", (event) => {
     if (!num2) return;
     let operationSign = event.target.innerText; 
-    lastOperation = operationSign;
     if (num1 && num2 && lastOperation) {
       operate();
+      //console.log(result);
     } else {  
       result = parseFloat(num2);
     }
     clearVar(operationSign);
+    lastOperation = operationSign;
   });
 });
 function clearVar(name = "") { 
   num1 += num2 + " " + name + " ";
   display.innerText = num1;
   num2 = "";
-  tempResult.innerText = result;
+  tempResult = result;
+  //console.log(tempResult)
 }
 
 function operate() {
@@ -48,10 +50,10 @@ function operate() {
     result *= num2;
    display.innerText = result;
   } 
-  else if (lastOperation === "+") {
+  else if (lastOperation === "+") { 
     result += num2;
     display.innerText = result;
-  } else if (lastOperation === "-") {
+  } else if (lastOperation === "-"){
     result -= num2;
     display.innerText = result;
   } else if (lastOperation === "/") {
@@ -73,12 +75,14 @@ equal.addEventListener("click", () => {
       result = "broken";
     }
   }
+  tempResult = "";
   operate();
   clearVar();
   display.innerText = result;
-  tempResult = "";
+  
   num2 = result;
   num1 = "";
+  console.log(result);
 });
 
 clear.addEventListener("click", () => {
